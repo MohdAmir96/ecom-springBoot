@@ -1,10 +1,7 @@
 package com.amir.ecommerce.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,12 +11,11 @@ import java.util.Date;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Data()
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private String brand;
@@ -28,4 +24,12 @@ public class Product {
     private Date releaseDate;
     private boolean available;
     private int quantity;
+
+    private String imageName;
+    private String imageType;
+
+    @JsonIgnore
+    @Lob
+    private byte[] imageData;
+
 }
